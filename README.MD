@@ -7,3 +7,5 @@ information about the selected movie.|
 SWAGGER DOCS
 
 https://localhost:44334/api-docs/index.html
+
+ ![Screenshot](https://i.postimg.cc/tC9RGJM1/image.png)
