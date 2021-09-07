@@ -41,11 +41,12 @@ namespace MoviesBackend.Application.Services
         public async Task<PaginatedList<GetMovieDto>> GetAllMovies(GetMoviesFilter filter)
         {
             filter ??= new GetMoviesFilter();
-            var Moviees = _MovieRepository
+            var Movies = _MovieRepository
                 .GetAll()
-                .WhereIf(!string.IsNullOrEmpty(filter.Title), x => EF.Functions.Like(x.Title, $"%{filter.Title}%"));
+                .WhereIf(!string.IsNullOrEmpty(filter.Title), x => EF.Functions.Like(x.Title, $"%{filter.Title}%"))
+                .WhereIf(!string.IsNullOrEmpty(filter.Overview), x => EF.Functions.Like(x.Overview, $"%{filter.Overview}%"));
                 
-            return await _mapper.ProjectTo<GetMovieDto>(Moviees).ToPaginatedListAsync(
+            return await _mapper.ProjectTo<GetMovieDto>(Movies).ToPaginatedListAsync(
                 filter.CurrentPage,
                 filter.PageSize);
         }
