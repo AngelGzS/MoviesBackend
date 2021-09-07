@@ -32,10 +32,6 @@ namespace MoviesBackend.API.Extensions
                 c.DescribeAllParametersInCamelCase();
                 c.OrderActionsBy(x => x.RelativePath);
 
-                var xmlfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlfile);
-                c.IncludeXmlComments(xmlPath);
-
             });
             return services;
         }

@@ -45,10 +45,12 @@ namespace MoviesBackend.Application.Services
                 .GetAll()
                 .WhereIf(!string.IsNullOrEmpty(filter.Title), x => EF.Functions.Like(x.Title, $"%{filter.Title}%"));
                 
-            return await _mapper.ProjectTo<GetMovieDto>(Moviees).ToPaginatedListAsync(filter.CurrentPage, filter.PageSize);
+            return await _mapper.ProjectTo<GetMovieDto>(Moviees).ToPaginatedListAsync(
+                filter.CurrentPage,
+                filter.PageSize);
         }
 
-        public async Task<GetMovieDto> GetMovieById(Guid id)
+        public async Task<GetMovieDto> GetMovieById(int id)
         {
             return _mapper.Map<GetMovieDto>(await _MovieRepository.GetById(id));
         }
@@ -60,7 +62,7 @@ namespace MoviesBackend.Application.Services
             return _mapper.Map<GetMovieDto>(created);
         }
 
-        public async Task<GetMovieDto> UpdateMovie(Guid id, UpdateMovieDto updatedMovie)
+        public async Task<GetMovieDto> UpdateMovie(int id, UpdateMovieDto updatedMovie)
         {
             var originalMovie = await _MovieRepository.GetById(id);
             if (originalMovie == null) return null;
@@ -73,7 +75,7 @@ namespace MoviesBackend.Application.Services
             return _mapper.Map<GetMovieDto>(originalMovie);
         }
 
-        public async Task<bool> DeleteMovie(Guid id)
+        public async Task<bool> DeleteMovie(int id)
         {
            await _MovieRepository.Delete(id);
            return await _MovieRepository.SaveChangesAsync() > 0;

@@ -8,13 +8,13 @@ namespace MoviesBackend.Domain.Core.Interfaces
     {
         IQueryable<TEntity> GetAll();
 
-        Task<TEntity> GetById(Guid id);
+        Task<TEntity> GetById(int id);
 
         TEntity Create(TEntity entity);
 
         TEntity Update(TEntity entity);
 
-        Task Delete(Guid id);
+        Task Delete(int id);
 
         Task<int> SaveChangesAsync();
     }

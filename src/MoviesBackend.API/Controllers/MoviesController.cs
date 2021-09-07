@@ -42,7 +42,7 @@ namespace MoviesBackend.Api.Controllers
         [Route("{id}")]
         [ProducesResponseType(404)]
         [ProducesResponseType(typeof(GetMovieDto), 200)]
-        public async Task<ActionResult<GetMovieDto>> GetMovieById(Guid id)
+        public async Task<ActionResult<GetMovieDto>> GetMovieById(int id)
         {
             var movie = await _movieAppService.GetMovieById(id);
             if (movie == null) return NotFound();
@@ -69,7 +69,7 @@ namespace MoviesBackend.Api.Controllers
         /// <param name="dto">The update object</param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<ActionResult<GetMovieDto>> Update(Guid id, [FromBody] UpdateMovieDto dto)
+        public async Task<ActionResult<GetMovieDto>> Update(int id, [FromBody] UpdateMovieDto dto)
         {
 
             var updatedMovie = await _movieAppService.UpdateMovie(id, dto);
@@ -89,7 +89,7 @@ namespace MoviesBackend.Api.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         [Route("{id}")]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete(int id)
         {
 
             var deleted = await _movieAppService.DeleteMovie(id);

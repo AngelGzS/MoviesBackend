@@ -13,13 +13,13 @@ namespace MoviesBackend.Application.Interfaces
 
         public Task<PaginatedList<GetMovieDto>> GetAllMovies(GetMoviesFilter filter);
 
-        public Task<GetMovieDto> GetMovieById(Guid id);
+        public Task<GetMovieDto> GetMovieById(int id);
 
         public Task<GetMovieDto> CreateMovie(InsertMovieDto Movie);
 
-        public Task<GetMovieDto> UpdateMovie(Guid id, UpdateMovieDto updatedMovie);
+        public Task<GetMovieDto> UpdateMovie(int id, UpdateMovieDto updatedMovie);
 
-        public Task<bool> DeleteMovie(Guid id);
+        public Task<bool> DeleteMovie(int id);
 
         #endregion
     }

@@ -25,7 +25,7 @@ namespace MoviesBackend.Infrastructure.Repositories
             return DbSet.AsNoTracking();
         }
 
-        public virtual async Task<TEntity> GetById(Guid id)
+        public virtual async Task<TEntity> GetById(int id)
         {
             return await DbSet
                         .AsNoTracking()
@@ -44,7 +44,7 @@ namespace MoviesBackend.Infrastructure.Repositories
             return entity;
         }
 
-        public virtual async Task Delete(Guid id)
+        public virtual async Task Delete(int id)
         {
             var entity = await DbSet.FindAsync(id);
             if (entity != null) DbSet.Remove(entity);

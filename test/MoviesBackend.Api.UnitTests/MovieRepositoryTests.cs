@@ -13,7 +13,7 @@ namespace MovieRepository.Api.UnitTests
 {
     public class MovieRepositoryTests
     {
-        private MoviesDbContext CreateDbContext(string name)
+        private static MoviesDbContext CreateDbContext(string name)
         {
             var options = new DbContextOptionsBuilder<MoviesDbContext>()
             .UseInMemoryDatabase(name)
@@ -74,8 +74,8 @@ namespace MovieRepository.Api.UnitTests
             // Simulate access from another context to verifiy that correct data was saved to database
             using (var context = CreateDbContext("Create_Movie"))
             {
-                (await context.Moviees.CountAsync()).Should().Be(1);
-                (await context.Moviees.FirstAsync()).Should().BeEquivalentTo(movie);
+                (await context.Movies.CountAsync()).Should().Be(1);
+                (await context.Movies.FirstAsync()).Should().BeEquivalentTo(movie);
             }
         }
 
